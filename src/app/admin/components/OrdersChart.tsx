@@ -62,7 +62,7 @@ const OrdersChart = () => {
   };
 
   return (
-    <section className="bg-white p-5 rounded-xl shadow w-full h-[430px]">
+    <section className="bg-white p-5 rounded-xl shadow max-w-full h-[300px] sm:h-[430px]">
       <Bar data={data} options={options} />
     </section>
   );

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Line } from "react-chartjs-2";
@@ -64,7 +64,7 @@ const RevenueChart = () => {
   };
 
   return (
-    <section className="bg-white p-5 rounded-xl shad w-full h-[430px]">
+    <section className="bg-white p-5 rounded-xl shadow max-w-full h-[300px] sm:h-[430px]">
       <Line data={data} options={options} />
     </section>
   );

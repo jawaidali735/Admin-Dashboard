@@ -25,7 +25,7 @@ export interface Order {
   totalAmount: number;
   status: string;
   products: Product[];
-  reviews?: Review[]; // Now using Review[] instead of { [key: string]: any }[]
+  reviews?: Review[];
 }
 
 // Define props interface for Card component
@@ -41,7 +41,7 @@ export default function CountMeter() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const data: Order[] = await getOrders(); // Type-casting the response as Order[]
+        const data: Order[] = await getOrders();
         setOrders(data);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -52,7 +52,7 @@ export default function CountMeter() {
   }, []);
 
   const totalAmount = orders.reduce((acc, order) => acc + order.totalAmount, 0);
-  
+
   const totalProductsOrdered = orders.reduce(
     (acc, order) =>
       acc + order.products.reduce((productAcc, product) => productAcc + product.quantity, 0),
@@ -60,7 +60,7 @@ export default function CountMeter() {
   );
 
   return (
-    <section className="grid grid-cols-2 md:grid-cols-4 gap-5">
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
       <Card imgUrl="/box.png" title="Products" value={totalProductsOrdered} />
       <Card imgUrl="/received.png" title="Orders" value={orders.length} />
       <Card imgUrl="/profit-up.png" title="Revenue" value={totalAmount} />
@@ -72,12 +72,12 @@ export default function CountMeter() {
 // Card component with proper typing
 function Card({ title, value, imgUrl }: CardProps) {
   return (
-    <div className="flex gap-2 px-4 py-2 bg-white shadow rounded-xl w-full justify-between items-center">
+    <div className="flex gap-2 p-4 bg-white shadow rounded-xl w-full justify-between items-center transition-all duration-300 hover:shadow-md">
       <div className="flex flex-col">
         <h1 className="font-semibold text-xl">{value}</h1>
         <h1 className="text-sm text-gray-700">{title}</h1>
       </div>
-      <Image className="h-10 w-10" width={100} height={100} src={imgUrl} alt={title} />
+      <Image className="h-10 w-10" width={40} height={40} src={imgUrl} alt={title} />
     </div>
   );
 }
